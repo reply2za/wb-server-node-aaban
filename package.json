@@ -1,0 +1,14 @@
+{
+  "name": "cs4550-f20-server-node-aaban",
+  "version": "1.0.0",
+  "description": "A Simple Node JS Middle Tier",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Zain Aaban",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
