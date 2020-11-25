@@ -1,8 +1,8 @@
 // console.log('Hello World!')
 //
 //
-// app.get('/hello', (req, res) =>
-//     res.send('Hello World'))
+app.get('/hello', (req, res) =>
+    res.send('Hello World'))
 //
 // app.get('/add/:a/:b',(req, res) =>
 // {
