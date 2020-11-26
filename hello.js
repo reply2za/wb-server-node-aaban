@@ -1,11 +1,13 @@
 // console.log('Hello World!')
 //
 //
-app.get('/hello', (req, res) =>
-    res.send('Hello World'))
+module.exports = (app) => {
+  app.get('/hello', (req, res) =>
+      res.send('Hello World'))
 
-app.get('/', (req, res) =>
-    res.send('Welcome to Zain\'s server'));
+  app.get('/', (req, res) =>
+      res.send('Welcome to Zain\'s server'));
+}
 //
 // app.get('/add/:a/:b',(req, res) =>
 // {
