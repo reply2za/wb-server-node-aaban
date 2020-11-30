@@ -11,14 +11,15 @@ app.use(function (req, res, next) {
   next();
 });
 
-const quizzesService = require("./controllers/quizzes-controller")
-quizzesService(app)
-const questionsService = require("./controllers/questions-controller")
-questionsService(app)
-
+// const quizzesService = require("./controllers/quizzes-controller")
+// quizzesService(app)
+// const questionsService = require("./controllers/questions-controller")
+// questionsService(app)
 // Alternative way of saying the above
 
 require("./controllers/quizzes-controller")(app)
 require("./controllers/questions-controller")(app)
+require("./hello")(app)
+
 
 console.log("How may I serve you?")
