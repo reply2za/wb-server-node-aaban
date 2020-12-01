@@ -9,11 +9,19 @@ module.exports = (app) => {
   const findQuizById = (req, res) =>
       res.send(quizzesService.findQuizById(req.params['qid']))
 
-  const deleteQuiz = (req, res) =>
-      res.send(quizzesService.deleteQuiz(req.params['qid']))
+  const deleteQuiz = (req, res) => {
+    const qid = req.params.qid
+    res.send(quizzesService.deleteQuiz(qid))
+  }
 
   const createQuiz = (req, res) =>
       res.send(quizzesService.createQuiz())
+
+  const updateQuiz = (req, res) => {
+    const qid = req.params.qid;
+    const newQuiz = req.body;
+    res.send(quizzesService.updateQuiz(qid, newQuiz))
+  }
 
 
   app.get("/api/quizzes", findAllQuizzes)

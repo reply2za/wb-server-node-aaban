@@ -1,5 +1,22 @@
 const express = require("express")
 const app = express()
+
+// initialize mongoose
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/whiteboard', {useNewUrlParser: true});
+
+// create a schema
+const quizSchema = mongoose.Schema({
+  name: String,
+  avg: Number
+}, {collection: "quizzes"})
+
+// Connect the schema to a unique model
+const quizModel = mongoose.model("QuizModel", quizSchema)
+
+quizModel.find()
+.then(quizzes => console.log(quizzes))
+
 // app.listen(3008)
 app.listen(process.env.PORT || 3000)
 app.use(function (req, res, next) {

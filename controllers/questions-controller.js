@@ -5,7 +5,8 @@ module.exports = (app) => {
 
 
   const findAllQuestions =  (req, res) =>
-      res.send(questionsService.findAllQuestions)
+      res.send(questionsService.findAllQuestions())
+
   const findQuestionsForQuiz = (req, res) =>
       res.send(questionsService.findQuestionsForQuiz(req.params['qid']))
 
