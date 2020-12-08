@@ -1,33 +1,42 @@
-
+// controller talks to the service, which talks to the DB
 const quizzesService = require("../services/quizzes-service")
 
 module.exports = (app) => {
 
-  const findAllQuizzes = (req, res) =>
-      res.send(quizzesService.findAllQuizzes())
+  const findAllQuizzes = (req, res) => {
+    quizzesService.findAllQuizzes()
+    .then(quizzes => res.send(quizzes))
+  }
 
-  const findQuizById = (req, res) =>
-      res.send(quizzesService.findQuizById(req.params['qid']))
+  const findQuizById = (req, res) => {
+    quizzesService.findQuizById(req.params.qid)
+    .then(quiz => res.send(quiz))
+  }
 
   const deleteQuiz = (req, res) => {
     const qid = req.params.qid
-    res.send(quizzesService.deleteQuiz(qid))
+    quizzesService.deleteQuiz(qid)
+    .then(status => res.send(status))
   }
 
   const createQuiz = (req, res) =>
-      res.send(quizzesService.createQuiz())
+      quizzesService.createQuiz()
+  .then(quiz => res.send(quiz))
 
   const updateQuiz = (req, res) => {
     const qid = req.params.qid;
     const newQuiz = req.body;
-    res.send(quizzesService.updateQuiz(qid, newQuiz))
+    console.log(newQuiz)
+    quizzesService.updateQuiz(qid, newQuiz)
+    .then(status => res.send(status))
   }
 
 
   app.get("/api/quizzes", findAllQuizzes)
   app.get("/api/quizzes/:qid", findQuizById)
-  app.delete("/api/quizzes/:qid", deleteQuiz)
   app.post("/api/quizzes", createQuiz)
+  app.delete("/api/quizzes/:qid", deleteQuiz)
+  app.put("/api/quizzes/:qid", updateQuiz)
 }
 
 

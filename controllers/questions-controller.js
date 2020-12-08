@@ -1,14 +1,16 @@
-
+// controller talks to the service, which talks to the DB
 const questionsService = require("../services/questions-service")
 
-module.exports = (app) => {
+module.exports = (app, bodyParser) => {
 
 
   const findAllQuestions =  (req, res) =>
-      res.send(questionsService.findAllQuestions())
+      questionsService.findAllQuestions()
+  .then(questions => res.send(questions))
 
   const findQuestionsForQuiz = (req, res) =>
-      res.send(questionsService.findQuestionsForQuiz(req.params['qid']))
+      questionsService.findQuestionsForQuiz(req.params['qid'])
+  .then(questions => res.send(questions))
 
   app.get("/api/quizzes/:qid/questions", findQuestionsForQuiz)
   app.get("/api/questions", findAllQuestions)

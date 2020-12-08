@@ -5,17 +5,9 @@ const app = express()
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/whiteboard', {useNewUrlParser: true});
 
-// create a schema
-const quizSchema = mongoose.Schema({
-  name: String,
-  avg: Number
-}, {collection: "quizzes"})
-
-// Connect the schema to a unique model
-const quizModel = mongoose.model("QuizModel", quizSchema)
-
-quizModel.find()
-.then(quizzes => console.log(quizzes))
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 // app.listen(3008)
 app.listen(process.env.PORT || 3000)
@@ -28,10 +20,11 @@ app.use(function (req, res, next) {
   next();
 });
 
-const quizzesService = require("./controllers/quizzes-controller")
-quizzesService(app)
-const questionsService = require("./controllers/questions-controller")
-questionsService(app)
+
+const quizzesController = require("./controllers/quizzes-controller")
+quizzesController(app)
+const questionsController = require("./controllers/questions-controller")
+questionsController(app)
 
 // Alternative way of saying the above
 
